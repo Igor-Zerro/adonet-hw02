@@ -10,7 +10,7 @@ namespace first
         static void Main(string[] args)
         {
             using (SqlConnection connection =
-                new SqlConnection(@"Data Source=localhost,1433\sql1;Initial Catalog=demo2021;User ID=sa;Password=Passw0rd%"))
+                new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=HomeworkTho;Integrated Security=True"))
                 // new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=demo2021;Integrated Security=True"))
             {
                 connection.Open();
@@ -33,7 +33,7 @@ namespace first
                     SqlParameter firstInsertParamKM = new SqlParameter("@KontentMenagerTest", SqlDbType.VarChar);
                     firstInsertParamKM.Value = user;
                     initInsertRole.CommandText =
-                        "INSERT INTO [dbo].[Roles] ([name]) VALUES ('@UserTest'), ('@Admin'), (N'@KontentMenagerTest');";
+                        "INSERT INTO [dbo].[Roles] ([name]) VALUES (@UserTest), (@AdminTest), (@KontentMenagerTest);";
                     initInsertRole.Parameters.Add(firstInsertParamUser);
                     initInsertRole.Parameters.Add(firstInsertParamAdmin);
                     initInsertRole.Parameters.Add(firstInsertParamKM);
