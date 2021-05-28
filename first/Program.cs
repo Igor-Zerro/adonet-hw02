@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using NickBuhro.Translit;
 
@@ -25,8 +26,17 @@ namespace first
                     string admin = "AdminTest";
                     string km = "KontentMenagerTest";
                     SqlCommand initInsertRole = connection.CreateCommand();
+                    SqlParameter firstInsertParamUser = new SqlParameter("@UserTest", SqlDbType.VarChar);
+                    firstInsertParamUser.Value = user;
+                    SqlParameter firstInsertParamAdmin = new SqlParameter("@AdminTest", SqlDbType.VarChar);
+                    firstInsertParamAdmin.Value = user;
+                    SqlParameter firstInsertParamKM = new SqlParameter("@KontentMenagerTest", SqlDbType.VarChar);
+                    firstInsertParamKM.Value = user;
                     initInsertRole.CommandText =
-                        "INSERT INTO [dbo].[Roles] ([name]) VALUES ('"+ user+"'), ('"+admin+"'), (N'"+km+"');";
+                        "INSERT INTO [dbo].[Roles] ([name]) VALUES ('@UserTest'), ('@Admin'), (N'@KontentMenagerTest');";
+                    initInsertRole.Parameters.Add(firstInsertParamUser);
+                    initInsertRole.Parameters.Add(firstInsertParamAdmin);
+                    initInsertRole.Parameters.Add(firstInsertParamKM);
                     int insertedRoleCount = initInsertRole.ExecuteNonQuery();
                     Console.WriteLine($"Total inserted row count: {insertedRoleCount}");
                 }
