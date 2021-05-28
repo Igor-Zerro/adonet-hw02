@@ -1,0 +1,3 @@
+﻿{
+  "ConnectionStrings": { "sqlStrocSoidRoles": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=HomeworkTho;Integrated Security=True" }
+}
